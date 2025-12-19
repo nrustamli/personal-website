@@ -1,7 +1,8 @@
 export interface NavigationItem {
   title: string
   href: string
-  iconName: string // Store as string instead of component
+  iconName?: string // For Lucide icons
+  iconPath?: string // For custom image icons (path relative to public folder)
   color: 'purple' | 'gray' | 'black'
 }
 
@@ -9,25 +10,25 @@ export const navigationItems: NavigationItem[] = [
   {
     title: "projects",
     href: "/projects",
-    iconName: "FolderKanban",
+    iconPath: "/images/icons/projects_icon.svg",
     color: "purple",
   },
   {
     title: "contact me",
     href: "/contact",
-    iconName: "Send",
+    iconPath: "/images/icons/contact_icon.svg",
     color: "gray",
   },
   {
     title: "blog",
     href: "/blog",
-    iconName: "FileText",
+    iconPath: "/images/icons/blog_icon.svg",
     color: "black",
   },
   {
     title: "resume",
     href: "/resume",
-    iconName: "FileCheck",
+    iconPath: "/images/icons/resume_icon.svg",
     color: "purple",
   },
 ];

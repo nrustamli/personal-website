@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Aldrich } from "next/font/google";
 import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const aldrich = Aldrich({ 
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-aldrich",
+});
 
 export const metadata: Metadata = {
   title: "Nurana Rustamli - Portfolio",
@@ -16,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} ${aldrich.variable}`}>{children}</body>
     </html>
   );
 }

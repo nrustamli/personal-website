@@ -13,3 +13,12 @@
   }
 }
 
+@layer utilities {
+  .font-thin-aldrich {
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+

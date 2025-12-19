@@ -13,6 +13,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        aldrich: ["var(--font-aldrich)", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

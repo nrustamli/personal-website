@@ -1,13 +1,15 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import * as LucideIcons from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface NavigationCardProps {
-  iconName: string // Receive icon name as string
+  iconName?: string // For Lucide icons
+  iconPath?: string // For custom image icons
   title: string
   href: string
   color?: 'purple' | 'gray' | 'black'
@@ -29,21 +31,57 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function NavigationCard({
   iconName,
+  iconPath,
   title,
   href,
   color = 'purple',
 }: NavigationCardProps) {
-  // Get the icon component from the map
-  const Icon = iconMap[iconName] || LucideIcons.FileText // Fallback icon
+  // Use custom image icon if provided, otherwise use Lucide icon
+  const useCustomIcon = !!iconPath
+  const Icon = iconName ? iconMap[iconName] : null
 
   return (
     <Link href={href}>
       <motion.div
         whileHover={{ scale: 1.02, y: -4 }}
         whileTap={{ scale: 0.98 }}
-        className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 cursor-pointer h-full flex flex-col items-center justify-center"
+        className="
+          bg-white/20 
+          backdrop-blur-md 
+          border border-white/30 
+          rounded-lg 
+          shadow-lg 
+          hover:shadow-xl 
+          hover:bg-white/30
+          transition-all 
+          duration-300
+          p-6 
+          cursor-pointer 
+          h-full 
+          flex 
+          flex-col 
+          items-center 
+          justify-center
+        "
       >
-        <Icon className={cn('w-12 h-12 mb-4', colorClasses[color])} />
+        {useCustomIcon ? (
+          // Custom image icon
+          <div className="mb-4 w-12 h-12 relative flex items-center justify-center">
+            <Image
+              src={iconPath}
+              alt={`${title} icon`}
+              width={48}
+              height={48}
+              className="object-contain"
+            />
+          </div>
+        ) : Icon ? (
+          // Lucide icon
+          <Icon className={cn('w-12 h-12 mb-4', colorClasses[color])} />
+        ) : (
+          // Fallback
+          <LucideIcons.FileText className={cn('w-12 h-12 mb-4', colorClasses[color])} />
+        )}
         <h3 className="text-lg font-medium text-black">{title}</h3>
       </motion.div>
     </Link>
