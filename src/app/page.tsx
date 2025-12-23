@@ -22,9 +22,9 @@ export default function Home() {
         </div>
 
         {/* Right Side - Navigation Cards */}
-        <div className="w-full lg:w-[40%] flex flex-col items-center lg:items-start justify-center lg:justify-start pt-8 lg:pt-0">
+        <div className="w-full lg:w-[40%] flex flex-col items-center justify-center pt-8 lg:pt-16 lg:mt-16">
           {/* Navigation Cards Grid */}
-          <div className="grid grid-cols-2 gap-4 w-full max-w-md">
+          <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
             {navigationItems.map((item) => (
               <NavigationCard
                 key={item.href}
