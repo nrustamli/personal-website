@@ -139,7 +139,7 @@ export default function Star3D({ className = '' }: Star3DProps) {
           canvas.height = size
           const ctx = canvas.getContext('2d')!
           const imageData = ctx.createImageData(size, size)
-          imageData.data.set(textures[0].image.data)
+          imageData.data.set(textures[0].image.data!)
           return canvas
         })
       )
