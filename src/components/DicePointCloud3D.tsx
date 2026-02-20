@@ -18,12 +18,17 @@ function createCircleTexture(): THREE.CanvasTexture {
   return new THREE.CanvasTexture(canvas)
 }
 
-// 6-pip layout: 2 columns × 3 rows
-const SIX_PIPS: Array<[number, number]> = [
-  [-0.45, -0.45], [0.45, -0.45],
-  [-0.45,  0.00], [0.45,  0.00],
-  [-0.45,  0.45], [0.45,  0.45],
-]
+// Pip layouts for face values 1–6 (u, v) in [-1, 1] face space
+const PIP_LAYOUTS: Record<number, Array<[number, number]>> = {
+  1: [[0, 0]],
+  2: [[0, -0.45], [0, 0.45]],
+  3: [[-0.45, -0.45], [0, 0], [0.45, 0.45]],
+  4: [[-0.45, -0.45], [0.45, -0.45], [-0.45, 0.45], [0.45, 0.45]],
+  5: [[-0.45, -0.45], [0.45, -0.45], [0, 0], [-0.45, 0.45], [0.45, 0.45]],
+  6: [[-0.45, -0.45], [0.45, -0.45], [-0.45, 0], [0.45, 0], [-0.45, 0.45], [0.45, 0.45]],
+}
+
+type FaceDir = 'pZ' | 'nZ' | 'pY' | 'nY' | 'pX' | 'nX'
 
 function generateDiePoints() {
   const positions: number[] = []
@@ -40,7 +45,7 @@ function generateDiePoints() {
   const s = 1.2
 
   // --- 6 faces (all purple) ---
-  const FACE_PTS = 700
+  const FACE_PTS = 1800
   for (let i = 0; i < FACE_PTS; i++) {
     push((Math.random() - 0.5) * 2 * s, (Math.random() - 0.5) * 2 * s,  s, PURPLE) // +Z
     push((Math.random() - 0.5) * 2 * s, (Math.random() - 0.5) * 2 * s, -s, PURPLE) // -Z
@@ -51,7 +56,7 @@ function generateDiePoints() {
   }
 
   // --- Edge highlights (12 edges, all purple) ---
-  const EDGE_PTS = 120
+  const EDGE_PTS = 250
   for (const [ey, ez] of [[-s, -s], [s, -s], [-s, s], [s, s]] as [number, number][]) {
     for (let i = 0; i < EDGE_PTS; i++) push((Math.random() - 0.5) * 2 * s, ey, ez, PURPLE)
   }
@@ -62,14 +67,38 @@ function generateDiePoints() {
     for (let i = 0; i < EDGE_PTS; i++) push(ex, ey, (Math.random() - 0.5) * 2 * s, PURPLE)
   }
 
-  // --- 6 pips on +Z face (black, 220 pts each) ---
+  // --- Pips on all 6 faces, values 1–6 in a random order ---
   const PIP_RADIUS = s * 0.14
   const PIP_PTS = 220
-  for (const [px, py] of SIX_PIPS) {
-    for (let i = 0; i < PIP_PTS; i++) {
-      const angle = Math.random() * Math.PI * 2
-      const r = Math.sqrt(Math.random()) * PIP_RADIUS
-      push(px * s + Math.cos(angle) * r, py * s + Math.sin(angle) * r, s + 0.015, PIP)
+  const eps = 0.015
+
+  // Shuffle [1,2,3,4,5,6] to assign a random value to each face direction
+  const faceValues = [1, 2, 3, 4, 5, 6]
+  for (let i = faceValues.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[faceValues[i], faceValues[j]] = [faceValues[j], faceValues[i]]
+  }
+
+  const faceDirs: FaceDir[] = ['pZ', 'nZ', 'pY', 'nY', 'pX', 'nX']
+
+  for (let f = 0; f < 6; f++) {
+    const dir = faceDirs[f]
+    const layout = PIP_LAYOUTS[faceValues[f]]
+    for (const [pu, pv] of layout) {
+      for (let i = 0; i < PIP_PTS; i++) {
+        const angle = Math.random() * Math.PI * 2
+        const r = Math.sqrt(Math.random()) * PIP_RADIUS
+        const lu = pu * s + Math.cos(angle) * r
+        const lv = pv * s + Math.sin(angle) * r
+        switch (dir) {
+          case 'pZ': push(lu, lv, s + eps, PIP); break
+          case 'nZ': push(lu, lv, -s - eps, PIP); break
+          case 'pY': push(lu, s + eps, lv, PIP); break
+          case 'nY': push(lu, -s - eps, lv, PIP); break
+          case 'pX': push(s + eps, lu, lv, PIP); break
+          case 'nX': push(-s - eps, lu, lv, PIP); break
+        }
+      }
     }
   }
 
