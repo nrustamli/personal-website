@@ -12,6 +12,15 @@ export default function Home() {
         </a>
       </div>
 
+      {/* About Me */}
+      <div className="w-full flex justify-center mb-8 lg:mb-12">
+        <p className="text-base md:text-lg text-gray-400 text-center max-w-xl leading-relaxed">
+        I&aposm an engineer passionate about integrating artificial intelligence into impactful solutions. 
+        On this site you&aposll find projects I&aposve built in my free time and research work from my UCL postgraduate degree in the Projects section. 
+        You can also get in touch via Contact Me, download my Resume, or read my thoughts on tech, design and AI in the Blog.
+        </p>
+      </div>
+
       {/* Main Content Area */}
       <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
         {/* Left Side - 3D Star */}
