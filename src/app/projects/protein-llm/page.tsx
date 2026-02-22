@@ -45,7 +45,7 @@ export default function ProteinLLMPage() {
             <div>
               <div className="flex flex-wrap gap-3 mb-8">
                 <a
-                  href="https://github.com/"
+                  href="https://github.com/nrustamli/domainbert"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="

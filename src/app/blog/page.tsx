@@ -7,11 +7,6 @@ import ThemeToggle from '@/components/ThemeToggle'
 
 const posts = [
   { id: 1, title: 'Blog Post One' },
-  { id: 2, title: 'Blog Post Two' },
-  { id: 3, title: 'Blog Post Three' },
-  { id: 4, title: 'Blog Post Four' },
-  { id: 5, title: 'Blog Post Five' },
-  { id: 6, title: 'Blog Post Six' },
 ]
 
 const cardVariants: Variants = {

@@ -18,8 +18,8 @@ export default function Home() {
 
       {/* About Me */}
       <div className="w-full flex justify-center mb-10 lg:mb-16">
-        <p className="text-base md:text-lg text-gray-400 text-center max-w-3xl leading-relaxed">
-          I&apos;m an engineer passionate about integrating artificial intelligence into impactful solutions.
+        <p className="text-base md:text-lg text-gray-400 text-center max-w-4xl leading-relaxed">
+          Hi there! I&apos;m an engineer passionate about integrating artificial intelligence into impactful solutions.
           On this site you&apos;ll find projects I&apos;ve built in my free time and research work from my UCL postgraduate degree in the <b>Projects</b> section.
           You can also get in touch via <b>Contact Me</b>, download my <b>Resume</b>, or read my thoughts on tech, design and AI in the <b>Blog</b>.
         </p>

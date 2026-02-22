@@ -3,18 +3,18 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { Project } from '../data'
+import ThemeToggle from '@/components/ThemeToggle'
 
 export default function ProjectContent({ project }: { project: Project }) {
   return (
     <main
-      className="min-h-screen relative p-8 md:p-12 lg:p-24"
-      style={{ backgroundColor: '#F5F7FA' }}
+      className="min-h-screen relative p-8 md:p-12 lg:p-24 bg-[#F5F7FA] dark:bg-[#1c1336]"
     >
       <div className="max-w-4xl mx-auto">
         <div className="mb-12">
           <Link
             href="/"
-            className="text-lg md:text-xl text-black font-aldrich font-thin-aldrich hover:opacity-70 transition-opacity"
+            className="text-lg md:text-xl text-black dark:text-white font-aldrich font-thin-aldrich hover:opacity-70 transition-opacity"
           >
             Nurana Rustamli
           </Link>
@@ -25,11 +25,11 @@ export default function ProjectContent({ project }: { project: Project }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
         >
-          <h1 className="text-4xl md:text-5xl text-black font-aldrich font-thin-aldrich mb-6">
+          <h1 className="text-4xl md:text-5xl text-black dark:text-white font-aldrich font-thin-aldrich mb-6">
             {project.title}
           </h1>
 
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
             {project.description}
           </p>
         </motion.div>
@@ -42,6 +42,8 @@ export default function ProjectContent({ project }: { project: Project }) {
             ← Back to Projects
           </Link>
         </div>
+
+        <ThemeToggle />
       </div>
     </main>
   )
