@@ -41,6 +41,18 @@ export default function SpotTheArtistPage() {
         <p className="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto mb-8">
           An AI-powered Web Application that allows users to discover and store Anna Laurini&apos;s famous artworks around their city.
         </p>
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2 justify-center mb-6">
+          {['React', 'FastAPI', 'CLIP', 'Firebase', 'Docker', 'Cloud Run'].map((tech) => (
+            <span
+              key={tech}
+              className="px-4 py-1.5 rounded-lg border border-indigo-300 dark:border-indigo-500 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-500 dark:text-indigo-300 text-sm font-medium"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
         <div className="flex flex-wrap gap-3 justify-center">
           <a
             href="https://github.com/nrustamli/spot_the_artist"
@@ -104,7 +116,7 @@ export default function SpotTheArtistPage() {
         <div className="grid grid-cols-2 gap-4 mb-8">
           <div>
             <img
-              src="/images/projects/verified-state.png"
+              src="/images/projects/spot-the-artist/verified-state.png"
               alt="Verified state screenshot"
               className="w-full rounded-lg border border-black/10 dark:border-white/10"
             />
@@ -112,7 +124,7 @@ export default function SpotTheArtistPage() {
           </div>
           <div>
             <img
-              src="/images/projects/not-recognised.png"
+              src="/images/projects/spot-the-artist/not-recognised.png"
               alt="Not Recognised state screenshot"
               className="w-full rounded-lg border border-black/10 dark:border-white/10"
             />
@@ -138,13 +150,13 @@ export default function SpotTheArtistPage() {
 
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">Click on the user profile to access these options:</p>
         <ul className="space-y-2 mb-6 text-gray-600 dark:text-gray-400">
-          <li>🌍 <span className="font-medium text-black dark:text-white">Explore Gallery</span> — leads to the main page that contains the shared gallery</li>
+          <li>🌍 <span className="font-medium text-black dark:text-white">Explore Gallery</span> - leads to the main page that contains the shared gallery</li>
           <li>🖼️ <span className="font-medium text-black dark:text-white">My Gallery</span> — takes the user to the page where they can see how many faces are left to earn a reward and all of the art spotted by them only</li>
           <li>🚪 <span className="font-medium text-black dark:text-white">Sign Out</span></li>
         </ul>
 
         <img
-          src="/images/projects/explore-gallery.png"
+          src="/images/projects/spot-the-artist/explore-gallery.png"
           alt="Explore Gallery page screenshot"
           className="w-full rounded-lg mb-12 border border-black/10 dark:border-white/10"
         />
@@ -217,9 +229,9 @@ export default function SpotTheArtistPage() {
         </p>
 
         <img
-          src="/images/projects/ai-pipeline.svg"
+          src="/images/projects/spot-the-artist/ai-pipeline.svg"
           alt="AI/ML pipeline diagram"
-          className="w-1/2 mx-auto block rounded-lg mb-6 border border-black/10 dark:border-white/10"
+          className="w- rounded-lg mb-6 border border-black/10 dark:border-white/10"
         />
 
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
