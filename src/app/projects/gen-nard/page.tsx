@@ -41,6 +41,17 @@ export default function GenNardPage() {
         <p className="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto mb-8">
           Baggammon game where users can generate themed checkers and a board.
         </p>
+        <div className="flex flex-wrap gap-2 justify-center mb-6">
+          {['React', 'TypeScript', 'Three.js', 'HuggingFace', 'Qwen-72B', 'FLUX.1', 'Firebase', 'Cloud Run', 'Docker'].map((tech) => (
+            <span
+              key={tech}
+              className="px-4 py-1.5 rounded-lg border border-[#B64CF7] dark:border-indigo-500 bg-[#F5E6FD] dark:bg-indigo-900/30 text-[#B64CF7] dark:text-indigo-300 text-sm font-medium"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
         <div className="flex flex-wrap gap-3 justify-center">
           <a
             href="https://github.com/nrustamli/GenNard"
@@ -55,9 +66,14 @@ export default function GenNardPage() {
           </a>
           <a
             href="https://gennard-app.web.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 bg-white/30 dark:bg-white/10 text-black dark:text-white border border-black/20 dark:border-white/20 rounded-md text-sm font-medium hover:bg-white/50 transition-colors"
           >
-            Web Site
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+            Live Site
           </a>
         </div>
       </motion.div>
@@ -100,7 +116,7 @@ export default function GenNardPage() {
         <img
           src="/images/projects/gennard/gennard_flowchart.svg"
           alt="AI pipeline flowchart"
-          className="w-full rounded-lg mb-8 border border-black/10 dark:border-white/10"
+          className="mx-auto block mb-6"
         />
 
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-5">

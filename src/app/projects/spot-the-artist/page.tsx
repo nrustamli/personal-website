@@ -46,7 +46,7 @@ export default function SpotTheArtistPage() {
           {['React', 'FastAPI', 'CLIP', 'Firebase', 'Docker', 'Cloud Run'].map((tech) => (
             <span
               key={tech}
-              className="px-4 py-1.5 rounded-lg border border-indigo-300 dark:border-indigo-500 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-500 dark:text-indigo-300 text-sm font-medium"
+              className="px-4 py-1.5 rounded-lg border border-[#B64CF7] dark:border-indigo-500 bg-[#F5E6FD] dark:bg-indigo-900/30 text-[#B64CF7] dark:text-indigo-300 text-sm font-medium"
             >
               {tech}
             </span>
@@ -66,14 +66,15 @@ export default function SpotTheArtistPage() {
             GitHub
           </a>
           <a
-            href="/papers/spot-the-artist.pdf"
-            download
+            href="https://spot-the-artist-373413279391.europe-west1.run.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 bg-white/30 dark:bg-white/10 text-black dark:text-white border border-black/20 dark:border-white/20 rounded-md text-sm font-medium hover:bg-white/50 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
             </svg>
-            Web Site
+            Live Site
           </a>
         </div>
       </motion.div>
@@ -231,7 +232,7 @@ export default function SpotTheArtistPage() {
         <img
           src="/images/projects/spot-the-artist/ai-pipeline.svg"
           alt="AI/ML pipeline diagram"
-          className="w- rounded-lg mb-6 border border-black/10 dark:border-white/10"
+          className="mx-auto block mb-6"
         />
 
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
