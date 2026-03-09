@@ -41,6 +41,18 @@ export default function ProteinLLMPage() {
         <p className="text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto mb-8">
           Masters Research Project where I trained an encoder on domain-level sequences to obtain an embedding space covering 77 million protein.
         </p>
+       
+      {/* Tech Stack */}
+      <div className="flex flex-wrap gap-2 justify-center mb-6">
+          {['Python', 'PyTorch' , 'Transformer', 'BERT', 'AlphaFold', 'Pfam', 'Masked Modeling'].map((tech) => (
+            <span
+              key={tech}
+              className="px-4 py-1.5 rounded-lg border border-[#B64CF7] dark:border-indigo-500 bg-[#F5E6FD] dark:bg-indigo-900/30 text-[#B64CF7] dark:text-indigo-300 text-sm font-medium"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
         <div className="flex flex-wrap gap-3 justify-center">
           <a
             href="https://github.com/nrustamli/domainbert"
@@ -54,7 +66,7 @@ export default function ProteinLLMPage() {
             GitHub
           </a>
           <a
-            href="/papers/domain-bert.pdf"
+            href="/domainbert.pdf"
             download
             className="inline-flex items-center gap-2 px-4 py-2 bg-white/30 dark:bg-white/10 text-black dark:text-white border border-black/20 dark:border-white/20 rounded-md text-sm font-medium hover:bg-white/50 transition-colors"
           >
@@ -66,70 +78,29 @@ export default function ProteinLLMPage() {
         </div>
       </motion.div>
 
-      {/* 3D element */}
-      <div className="relative w-full h-[55vh]">
-        <HelixPointCloud3D xLookAt={0} />
+      {/* 3D + Abstract */}
+      <div className="flex items-center px-8 md:px-12 lg:px-16">
+        <div className="relative w-1/2 h-[55vh]">
+          <HelixPointCloud3D xLookAt={0} />
+        </div>
+        <div className="w-1/2 pl-8">
+          <h2 className="text-2xl md:text-3xl font-aldrich text-black dark:text-white mb-4 text-center">Abstract</h2>
+     <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
+          Today protein LLMs are widely used to solve tasks like structure and function prediction. With
+their utility depending on the quality of the learned embedding space. To build such spaces,
+transformer-based masked-token models are typically trained on amino-acid tokenisations. This
+study asks whether biological structure could be similarly captured if tokens are protein domains
+instead. We train an encoder on domain-level sequences and obtain an embedding space covering
+77 million proteins. The resulting space shows some organisation: embeddings cluster by similarity,
+embedding proximity correlates with multi-domain architecture order, and neighbours display
+Gene Ontology consistency, indicating that the model captures both domain composition and
+ordering. Despite limits in training scale and embedding dimensionality, these results provide
+proof of concept that domain-based tokenisation is biologically informative. We conclude that
+protein LLMs trained using domain tokens can complement residue-level models and may support
+downstream applications such as protein function prediction and design.
+          </p>
+        </div>
       </div>
-
-      {/* Blog post */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: 'easeOut', delay: 0.15 }}
-        className="max-w-2xl mx-auto px-8 md:px-12 py-16"
-      >
-        <h2 className="text-2xl font-aldrich text-black dark:text-white mb-4">Introduction</h2>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
-
-        <h2 className="text-2xl font-aldrich text-black dark:text-white mb-4">Background</h2>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-
-        <h3 className="text-lg font-aldrich text-black dark:text-white mb-3">Protein Domain Sequences</h3>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-        </p>
-
-        <h3 className="text-lg font-aldrich text-black dark:text-white mb-3">Language Models in Biology</h3>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
-          Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.
-        </p>
-
-        <h2 className="text-2xl font-aldrich text-black dark:text-white mb-4">Methodology</h2>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
-          At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
-        </p>
-
-        <h3 className="text-lg font-aldrich text-black dark:text-white mb-3">Data Collection</h3>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
-          Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio nam libero tempore cum soluta nobis eligendi optio.
-        </p>
-
-        <h3 className="text-lg font-aldrich text-black dark:text-white mb-3">Training</h3>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
-          Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae itaque earum rerum hic tenetur a sapiente delectus.
-        </p>
-
-        <h2 className="text-2xl font-aldrich text-black dark:text-white mb-4">Results</h2>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
-          Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum dolorem eum fugiat quo voluptas nulla pariatur.
-        </p>
-
-        <h3 className="text-lg font-aldrich text-black dark:text-white mb-3">Embedding Space</h3>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
-          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur quis autem vel eum iure reprehenderit.
-        </p>
-
-        <h2 className="text-2xl font-aldrich text-black dark:text-white mb-4">Conclusion</h2>
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
-          Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis voluptas assumenda est omnis dolor repellendus.
-        </p>
-      </motion.div>
-
-      {/* Back link */}
       <div className="max-w-2xl mx-auto px-8 md:px-12 pb-16">
         <Link href="/projects" className="text-purple-500 hover:underline text-sm md:text-base">
           ← Back to Projects

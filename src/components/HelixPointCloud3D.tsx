@@ -111,7 +111,7 @@ export default function HelixPointCloud3D({ className = '', xLookAt = 0 }: { cla
       0.1,
       100,
     )
-    camera.position.set(0, 0, 5.5)
+    camera.position.set(0, 0, 7.5)
     camera.lookAt(xLookAt, 0, 0)
 
     // Renderer
