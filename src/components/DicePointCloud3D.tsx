@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -30,12 +30,12 @@ const PIP_LAYOUTS: Record<number, Array<[number, number]>> = {
 
 type FaceDir = 'pZ' | 'nZ' | 'pY' | 'nY' | 'pX' | 'nX'
 
-function generateDiePoints() {
+function generateDiePoints(isDark: boolean) {
   const positions: number[] = []
   const colors: number[] = []
 
   const PURPLE: [number, number, number] = [0.545, 0.231, 0.741]
-  const PIP:    [number, number, number] = [0.05, 0.05, 0.05]
+  const PIP:    [number, number, number] = isDark ? [1.0, 1.0, 1.0] : [0.05, 0.05, 0.05]
 
   function push(x: number, y: number, z: number, c: [number, number, number]) {
     positions.push(x, y, z)
@@ -112,6 +112,16 @@ export default function DicePointCloud3D({ className = '', xLookAt = 0 }: { clas
   const containerRef = useRef<HTMLDivElement>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const animationIdRef = useRef<number | null>(null)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    setIsDarkMode(document.documentElement.classList.contains('dark'))
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'))
+    })
+    observer.observe(document.documentElement, { attributeFilter: ['class'] })
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -159,7 +169,7 @@ export default function DicePointCloud3D({ className = '', xLookAt = 0 }: { clas
       map: circleTexture,
       alphaMap: circleTexture,
     })
-    const { positions: pos1, colors: col1 } = generateDiePoints()
+    const { positions: pos1, colors: col1 } = generateDiePoints(isDarkMode)
     geo1.setAttribute('position', new THREE.Float32BufferAttribute(pos1, 3))
     geo1.setAttribute('color', new THREE.Float32BufferAttribute(col1, 3))
     const die1Group = new THREE.Group()
@@ -180,7 +190,7 @@ export default function DicePointCloud3D({ className = '', xLookAt = 0 }: { clas
       map: circleTexture,
       alphaMap: circleTexture,
     })
-    const { positions: pos2, colors: col2 } = generateDiePoints()
+    const { positions: pos2, colors: col2 } = generateDiePoints(isDarkMode)
     geo2.setAttribute('position', new THREE.Float32BufferAttribute(pos2, 3))
     geo2.setAttribute('color', new THREE.Float32BufferAttribute(col2, 3))
     const die2Group = new THREE.Group()
@@ -243,7 +253,7 @@ export default function DicePointCloud3D({ className = '', xLookAt = 0 }: { clas
       renderer.dispose()
       rendererRef.current = null
     }
-  }, [xLookAt])
+  }, [xLookAt, isDarkMode])
 
   return (
     <div

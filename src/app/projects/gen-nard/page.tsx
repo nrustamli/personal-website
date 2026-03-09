@@ -116,7 +116,7 @@ export default function GenNardPage() {
         <img
           src="/images/projects/gennard/gennard_flowchart.svg"
           alt="AI pipeline flowchart"
-          className="mx-auto block mb-6"
+          className="mx-auto block mb-6 dark:invert"
         />
 
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-5">

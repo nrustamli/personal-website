@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -18,11 +18,11 @@ function createCircleTexture(): THREE.CanvasTexture {
   return new THREE.CanvasTexture(canvas)
 }
 
-function generateCameraPoints() {
+function generateCameraPoints(isDark: boolean) {
   const positions: number[] = []
   const colors: number[] = []
 
-  const BLACK: [number, number, number] = [0.05, 0.05, 0.05]
+  const BLACK: [number, number, number] = isDark ? [1.0, 1.0, 1.0] : [0.05, 0.05, 0.05]
   const PURPLE: [number, number, number] = [0.545, 0.231, 0.741]
 
   function push(x: number, y: number, z: number, color: [number, number, number]) {
@@ -239,6 +239,16 @@ export default function CameraPointCloud3D({ className = '', xLookAt = 0 }: { cl
   const containerRef = useRef<HTMLDivElement>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const animationIdRef = useRef<number | null>(null)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    setIsDarkMode(document.documentElement.classList.contains('dark'))
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'))
+    })
+    observer.observe(document.documentElement, { attributeFilter: ['class'] })
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -277,7 +287,7 @@ export default function CameraPointCloud3D({ className = '', xLookAt = 0 }: { cl
     controls.target.set(xLookAt, 0, 0)
 
     // Point cloud
-    const { positions, colors: pointColors } = generateCameraPoints()
+    const { positions, colors: pointColors } = generateCameraPoints(isDarkMode)
     const circleTexture = createCircleTexture()
 
     const geometry = new THREE.BufferGeometry()
@@ -346,7 +356,7 @@ export default function CameraPointCloud3D({ className = '', xLookAt = 0 }: { cl
       renderer.dispose()
       rendererRef.current = null
     }
-  }, [xLookAt])
+  }, [xLookAt, isDarkMode])
 
   return (
     <div

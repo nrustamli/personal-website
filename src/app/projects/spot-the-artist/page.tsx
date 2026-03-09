@@ -232,7 +232,7 @@ export default function SpotTheArtistPage() {
         <img
           src="/images/projects/spot-the-artist/ai-pipeline.svg"
           alt="AI/ML pipeline diagram"
-          className="mx-auto block mb-6"
+          className="mx-auto block mb-6 dark:invert"
         />
 
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">

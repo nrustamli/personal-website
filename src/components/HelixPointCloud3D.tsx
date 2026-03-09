@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -18,7 +18,7 @@ function createCircleTexture(): THREE.CanvasTexture {
   return new THREE.CanvasTexture(canvas)
 }
 
-function generateHelixPoints() {
+function generateHelixPoints(isDark: boolean) {
   const positions: number[] = []
   const colors: number[] = []
 
@@ -35,15 +35,15 @@ function generateHelixPoints() {
     const t = (i / (STRAND_POINTS - 1)) * TOTAL_ANGLE
     const s = i / (STRAND_POINTS - 1)
 
-    // Strand 1 — black (0.05, 0.05, 0.05)
+    // Strand 1 — black (or white in dark mode)
     const x1 = HELIX_RADIUS * Math.cos(t)
     const y1 = RISE_PER_RADIAN * t - yOffset
     const z1 = HELIX_RADIUS * Math.sin(t)
     positions.push(x1, y1, z1)
 
-    const r1 = 0.05
-    const g1 = 0.05
-    const b1 = 0.05
+    const r1 = isDark ? 1.0 : 0.05
+    const g1 = isDark ? 1.0 : 0.05
+    const b1 = isDark ? 1.0 : 0.05
     colors.push(r1, g1, b1)
 
     // Strand 2 — #8B3BBD (0.545, 0.231, 0.741)
@@ -85,6 +85,16 @@ export default function HelixPointCloud3D({ className = '', xLookAt = 0 }: { cla
   const containerRef = useRef<HTMLDivElement>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const animationIdRef = useRef<number | null>(null)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    setIsDarkMode(document.documentElement.classList.contains('dark'))
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'))
+    })
+    observer.observe(document.documentElement, { attributeFilter: ['class'] })
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -123,7 +133,7 @@ export default function HelixPointCloud3D({ className = '', xLookAt = 0 }: { cla
     controls.target.set(xLookAt, 0, 0)
 
     // Point cloud
-    const { positions, colors } = generateHelixPoints()
+    const { positions, colors } = generateHelixPoints(isDarkMode)
     const circleTexture = createCircleTexture()
 
     const geometry = new THREE.BufferGeometry()
@@ -192,7 +202,7 @@ export default function HelixPointCloud3D({ className = '', xLookAt = 0 }: { cla
       renderer.dispose()
       rendererRef.current = null
     }
-  }, [xLookAt])
+  }, [xLookAt, isDarkMode])
 
   return (
     <div
