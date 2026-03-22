@@ -36,6 +36,7 @@ export default function Home() {
               title={item.title}
               href={item.href}
               color={item.color}
+              download={item.download}
             />
           ))}
         </div>

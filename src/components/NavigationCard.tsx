@@ -24,6 +24,7 @@ interface NavigationCardProps {
   title: string
   href: string
   color?: 'purple' | 'gray' | 'black'
+  download?: boolean
 }
 
 const colorClasses = {
@@ -46,12 +47,21 @@ export default function NavigationCard({
   title,
   href,
   color = 'purple',
+  download,
 }: NavigationCardProps) {
   const Icon = iconName ? iconMap[iconName] : null
   const InlineIcon = iconPath ? inlineIconMap[iconPath] : undefined
 
+  const Wrapper = download
+    ? (props: { children: React.ReactNode }) => (
+        <a href={href} download>{props.children}</a>
+      )
+    : (props: { children: React.ReactNode }) => (
+        <Link href={href}>{props.children}</Link>
+      )
+
   return (
-    <Link href={href}>
+    <Wrapper>
       <motion.div
         whileHover={{ scale: 1.02, y: -4 }}
         whileTap={{ scale: 0.98 }}
@@ -101,7 +111,7 @@ export default function NavigationCard({
         )}
         <h3 className="text-lg font-medium text-black dark:text-white">{title}</h3>
       </motion.div>
-    </Link>
+    </Wrapper>
   )
 }
 

@@ -19,6 +19,7 @@ node_modules/
 
 # Documentation
 *.md
+*.pdf
 
 # Debug
 npm-debug.log*
