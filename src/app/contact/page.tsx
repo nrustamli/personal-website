@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
-import Star3D from '@/components/Star3D'
+import Star3D from '@/components/pointclouds/Star3D'
 import ThemeToggle from '@/components/ThemeToggle'
 
 const contacts = [

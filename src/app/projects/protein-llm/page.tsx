@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import HelixPointCloud3D from '@/components/HelixPointCloud3D'
-import Star3D from '@/components/Star3D'
+import HelixPointCloud3D from '@/components/pointclouds/HelixPointCloud3D'
+import Star3D from '@/components/pointclouds/Star3D'
 import ThemeToggle from '@/components/ThemeToggle'
 
 export default function ProteinLLMPage() {

@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import DicePointCloud3D from '@/components/DicePointCloud3D'
-import Star3D from '@/components/Star3D'
+import DicePointCloud3D from '@/components/pointclouds/DicePointCloud3D'
+import Star3D from '@/components/pointclouds/Star3D'
 import ThemeToggle from '@/components/ThemeToggle'
 
 export default function GenNardPage() {

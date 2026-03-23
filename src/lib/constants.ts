@@ -2,7 +2,7 @@ export interface NavigationItem {
   title: string
   href: string
   iconName?: string // For Lucide icons
-  iconPath?: string // For custom image icons (path relative to public folder)
+  icon?: 'projects' | 'contact' | 'blog' | 'resume'
   color: 'purple' | 'gray' | 'black'
   download?: boolean
 }
@@ -11,25 +11,25 @@ export const navigationItems: NavigationItem[] = [
   {
     title: "projects",
     href: "/projects",
-    iconPath: "/images/icons/projects_icon.svg",
+    icon: "projects",
     color: "purple",
   },
   {
     title: "contact me",
     href: "/contact",
-    iconPath: "/images/icons/contact_icon.svg",
+    icon: "contact",
     color: "gray",
   },
   {
     title: "blog",
     href: "/blog",
-    iconPath: "/images/icons/blog_icon.svg",
+    icon: "blog",
     color: "black",
   },
   {
     title: "resume",
     href: "/Resume_Nurana_Rustamli.pdf",
-    iconPath: "/images/icons/resume_icon.svg",
+    icon: "resume",
     color: "purple",
     download: true,
   },

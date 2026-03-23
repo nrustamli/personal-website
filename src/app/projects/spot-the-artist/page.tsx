@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import CameraPointCloud3D from '@/components/CameraPointCloud3D'
-import Star3D from '@/components/Star3D'
+import CameraPointCloud3D from '@/components/pointclouds/CameraPointCloud3D'
+import Star3D from '@/components/pointclouds/Star3D'
 import ThemeToggle from '@/components/ThemeToggle'
 
 export default function SpotTheArtistPage() {

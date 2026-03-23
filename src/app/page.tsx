@@ -1,4 +1,4 @@
-import Star3D from '@/components/Star3D'
+import Star3D from '@/components/pointclouds/Star3D'
 import NavigationCard from '@/components/NavigationCard'
 import { navigationItems } from '@/lib/constants'
 import ThemeToggle from '@/components/ThemeToggle'
@@ -32,7 +32,7 @@ export default function Home() {
             <NavigationCard
               key={item.href}
               iconName={item.iconName}
-              iconPath={item.iconPath}
+              icon={item.icon}
               title={item.title}
               href={item.href}
               color={item.color}

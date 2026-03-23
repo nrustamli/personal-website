@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import FlowerPointCloud3D from '@/components/FlowerPointCloud3D'
-import Star3D from '@/components/Star3D'
+import FlowerPointCloud3D from '@/components/pointclouds/FlowerPointCloud3D'
+import Star3D from '@/components/pointclouds/Star3D'
 import ThemeToggle from '@/components/ThemeToggle'
 
 export default function GalanthusPage() {

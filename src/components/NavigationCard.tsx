@@ -1,26 +1,25 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import * as LucideIcons from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import ProjectsIcon from '@/components/ProjectsIcon'
-import ContactIcon from '@/components/ContactIcon'
-import BlogIcon from '@/components/BlogIcon'
-import ResumeIcon from '@/components/ResumeIcon'
+import ProjectsIcon from '@/components/icons/ProjectsIcon'
+import ContactIcon from '@/components/icons/ContactIcon'
+import BlogIcon from '@/components/icons/BlogIcon'
+import ResumeIcon from '@/components/icons/ResumeIcon'
 
-const inlineIconMap: Record<string, React.FC<{ className?: string }>> = {
-  '/images/icons/projects_icon.svg': ProjectsIcon,
-  '/images/icons/contact_icon.svg': ContactIcon,
-  '/images/icons/blog_icon.svg': BlogIcon,
-  '/images/icons/resume_icon.svg': ResumeIcon,
+const iconComponentMap: Record<string, React.FC<{ className?: string }>> = {
+  projects: ProjectsIcon,
+  contact: ContactIcon,
+  blog: BlogIcon,
+  resume: ResumeIcon,
 }
 
 interface NavigationCardProps {
   iconName?: string // For Lucide icons
-  iconPath?: string // For custom image icons
+  icon?: string // Custom animated SVG icon key
   title: string
   href: string
   color?: 'purple' | 'gray' | 'black'
@@ -43,14 +42,14 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function NavigationCard({
   iconName,
-  iconPath,
+  icon,
   title,
   href,
   color = 'purple',
   download,
 }: NavigationCardProps) {
   const Icon = iconName ? iconMap[iconName] : null
-  const InlineIcon = iconPath ? inlineIconMap[iconPath] : undefined
+  const InlineIcon = icon ? iconComponentMap[icon] : undefined
 
   const Wrapper = download
     ? (props: { children: React.ReactNode }) => (
@@ -90,17 +89,6 @@ export default function NavigationCard({
           // Animated inline SVG icon
           <div className="mb-4 w-12 h-12 flex items-center justify-center">
             <InlineIcon className="w-full h-full" />
-          </div>
-        ) : iconPath ? (
-          // Static image icon fallback
-          <div className="mb-4 w-12 h-12 relative flex items-center justify-center">
-            <Image
-              src={iconPath}
-              alt={`${title} icon`}
-              width={48}
-              height={48}
-              className="object-contain"
-            />
           </div>
         ) : Icon ? (
           // Lucide icon

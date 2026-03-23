@@ -17,8 +17,8 @@ node_modules/
 .DS_Store
 *.pem
 
-# Documentation
-*.md
+# Firebase
+.firebase/
 
 
 # Debug
@@ -29,9 +29,6 @@ yarn-error.log*
 # Local env files
 .env*.local
 .env
-
-# Vercel
-.vercel
 
 # TypeScript
 *.tsbuildinfo
@@ -48,4 +45,4 @@ next-env.d.ts
 public/spline/*.splinecode
 
 
-**/galnthus
+**/galanthus
