@@ -1,4 +1,4 @@
-# ⭐️ My Personal Website
+# ⭐️ Personal Website
 
 My portfolio website built to showcase AI/ML projects and research. Also it contains blog posts, contact info and CV file to download.
 
